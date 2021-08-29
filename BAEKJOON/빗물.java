@@ -11,11 +11,32 @@ public class 빗물 {
 		int R = Integer.parseInt(st.nextToken());
 		int C = Integer.parseInt(st.nextToken());
 		
+		int sum = 0;
+		int[] arr = new int[C];
+		
 		st = new StringTokenizer(br.readLine());
-		int prev = -1;
 		for(int i = 0; i < C; i++) {
-			int cur = Integer.parseInt(st.nextToken());
-			
+			arr[i] = Integer.parseInt(st.nextToken());
 		}
+		
+		for(int i = 1; i < C-1; i++) {
+			int left = 0;
+			int right = 0;
+			int cur = arr[i];
+			
+			for(int j = 0; j < i; j++) {
+				left = Math.max(left, arr[j]);
+			}
+			
+			for(int j = C-1; j > i; j-- ) {
+				right = Math.max(right, arr[j]);
+			}
+			
+			System.out.println("left = " + left + " right = " + right + " cur = " + cur);
+			if(cur < left && cur < right) {
+				sum += (Math.min(left, right) - cur);
+			}
+		}
+		System.out.println(sum);
 	}
 }
